@@ -5,3 +5,6 @@ Content-Type: application/json
     "username": "sudo",
     "password": "password"
 }
+
+################
+GET http://localhost:3000/users
