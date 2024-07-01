@@ -44,9 +44,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/aaa" element={< HomePage/>}/>
+        { user ?
+        <Route path="/" element={< HomePage/>}/>
+        :
         <Route path="/" element={<LoginPage sendLoginRequest={sendLoginRequest} notification={notification} isError={isError}/>}/>
-      </Routes>
+        }
+        </Routes>
     </BrowserRouter>
   )
 }
