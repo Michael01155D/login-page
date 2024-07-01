@@ -8,3 +8,4 @@ Current TODOs (more will likely be added):
 
 -improve visual design of webpage
 
+- add session management (so user stays logged in on page refresh -- this is likely tied to first todo)
