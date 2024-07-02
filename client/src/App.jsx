@@ -45,7 +45,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         { user ?
-        <Route path="/" element={< HomePage/>}/>
+        <Route path="/" element={< HomePage user={user}/>}/>
         :
         <Route path="/" element={<LoginPage sendLoginRequest={sendLoginRequest} notification={notification} isError={isError}/>}/>
         }
