@@ -12,6 +12,13 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    const loggedIn = JSON.parse(localStorage.getItem('user'));
+    console.log('loggedIn is after json parse: ', loggedIn)
+    if (loggedIn) {
+      setUser(loggedIn.user);
+    }
+  }, [])
+  useEffect(() => {
     if (user !== null) {
 
       setNotification("Signed in as " + user.username);
@@ -31,6 +38,8 @@ function App() {
       const response = await login(username, password);
       if (response.authToken) {
         setUser(response.user);
+        localStorage.setItem('user', JSON.stringify(response));
+        console.log("server response is: ", response)
       } else {
         setNotification(response.error);
         setIsError(true);

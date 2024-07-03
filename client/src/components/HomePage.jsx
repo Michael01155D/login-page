@@ -1,7 +1,7 @@
-const HomePage = ({user}) => {
+const HomePage = ({  user}) => {
     return(
         <>
-        Hi {user.username}
+        Logged in successfully as {user.username}
         </>
     )
 }
