@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     const loggedIn = JSON.parse(localStorage.getItem('user'));
-    console.log('loggedIn is after json parse: ', loggedIn)
     if (loggedIn) {
       setUser(loggedIn.user);
     }
