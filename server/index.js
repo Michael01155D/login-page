@@ -3,7 +3,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const server = express();
 const cors = require('cors');
-const requireAuth = require('./middlewares/requireAuth');
 dotenv.config();
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.BACKEND_PORT;
@@ -11,7 +10,6 @@ const userRouter = require('./controllers/userController');
 const loginRouter = require('./controllers/loginController');
 server.use(cors());
 server.use(express.json());
-server.use(requireAuth);
 server.use("/users", userRouter);
 server.use("/login", loginRouter);
 
