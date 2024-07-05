@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import { login } from './connections/loginService';
+import RegisterPage from './components/RegisterPage';
 function App() {
 
   const [user, setUser] = useState(null);
@@ -17,13 +18,6 @@ function App() {
       setUser(loggedIn.user);
     }
   }, [])
-  useEffect(() => {
-    if (user !== null) {
-
-      setNotification("Signed in as " + user.username);
-      resetNotification();
-    }
-  }, [user]);
 
   const resetNotification = () => {
     setTimeout(() => {
@@ -53,11 +47,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         { user ?
-        <Route path="/" element={< HomePage user={user}/>}/>
+        <Route path="/" element={< HomePage user={user} setUser={setUser}/>}/>
         :
         <Route path="/" element={<LoginPage sendLoginRequest={sendLoginRequest} notification={notification} isError={isError}/>}/>
         }
-        </Routes>
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
     </BrowserRouter>
   )
 }

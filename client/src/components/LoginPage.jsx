@@ -1,6 +1,8 @@
 import { useState } from "react";
 import NotificationMessage from './NotificationMessage';
+import LoginForm from './LoginForm';
 import '../styles/loginPage.css';
+import { Link } from "react-router-dom";
 
 const LoginPage = ({ sendLoginRequest, notification, isError}) => {
     const [username, setUsername] = useState('');
@@ -15,22 +17,8 @@ const LoginPage = ({ sendLoginRequest, notification, isError}) => {
     return (
         <>
         {notification ? <NotificationMessage notification={notification} isError={isError} /> : <></>}
-        <form className="loginForm" onSubmit={handleLogin}>
-            <h2>Login</h2>
-            <section id="username-section">
-                <label htmlFor="username-form">Username</label>
-                <input placeholder='username' id='username-form' type='text' value={username} name="Username" 
-                onChange={(newName) => setUsername(newName.target.value) }
-                />
-            </section>
-            <section>
-                <label htmlFor="password-form">Password</label>
-                <input placeholder="password" id='password-form' type='password' value={password} name="Password" 
-                onChange={(newPw) => setPassword(newPw.target.value) }
-                />
-            </section>
-            <button type="submit">Log In</button>
-        </form>
+        <LoginForm sendLoginRequest={sendLoginRequest}/>
+        <Link to="/register"> New User? Register Here! </Link>
         </>
     )
 }
