@@ -6,7 +6,11 @@ const bcrypt = require('bcrypt');
 
 router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(req.body.password, salt);
+    const password = req.body.password;
+    if (!password || password.trim().length < 8) {
+        return res.status(400).send({invalidPasswordError: "Password must be at least 8 characters"})
+    }
+    const hash = await bcrypt.hash(password, salt);
     const newUser = new User({username: req.body.username, passwordHash: hash});
     try {
         const savedUser = await newUser.save();

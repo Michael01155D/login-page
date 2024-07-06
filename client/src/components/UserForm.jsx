@@ -1,18 +1,18 @@
 import { useState } from "react";
 
-const LoginForm = ({sendLoginRequest}) => {
+const UserForm = ({requestHandler, formAction}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async (e) => {
+    const handleRequest = async (e) => {
         e.preventDefault();
-        await sendLoginRequest(username, password);
+        await requestHandler(username, password);
         setPassword("");
     }
 
     return (
-        <form className="loginForm" onSubmit={handleLogin}>
-            <h2>Login</h2>
+        <form className="userForm" onSubmit={handleRequest}>
+            <h2>{formAction}</h2>
             <section id="username-section">
                 <label htmlFor="username-form">Username</label>
                 <input placeholder='username' id='username-form' type='text' value={username} name="Username" 
@@ -25,9 +25,9 @@ const LoginForm = ({sendLoginRequest}) => {
                 onChange={(newPw) => setPassword(newPw.target.value) }
                 />
             </section>
-            <button type="submit">Log In</button>
+            <button type="submit">{formAction}</button>
         </form>
     )
 }
 
-export default LoginForm;
+export default UserForm;

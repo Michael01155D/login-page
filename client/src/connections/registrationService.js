@@ -1,6 +1,6 @@
-const URL = "http://localhost:3000/login";
+const URL = "http://localhost:3000/users";
 
-export const login = async (username, password) => {
+export const register = async (username, password) => {
         const res = await fetch(URL, {
             method: "POST",
             headers: {
@@ -8,5 +8,7 @@ export const login = async (username, password) => {
             },
             body: JSON.stringify({username, password})
         })
-        return res.json();
+        const response = res.json();
+        //console.log("in register, res is: ", response)
+        return response;
 }
