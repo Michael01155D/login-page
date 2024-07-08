@@ -1,10 +1,7 @@
-import { useLocation } from 'react-router-dom';
 import '../styles/homePage.css';
-import { useEffect } from 'react';
+
 
 const HomePage = ({ user, setUser }) => {
-
-    const location = useLocation();
 
     const handleLogout = () => {
         localStorage.removeItem("user");
@@ -14,6 +11,9 @@ const HomePage = ({ user, setUser }) => {
         <>
         Logged in successfully as {user.username}
         <button className="logout"onClick={() => handleLogout()}>Log Out</button>
+        <div class="todo">
+           <p>Todo: add a button that sends an API request in order to verify the user's token is valid</p>
+        </div>
         </>
     )
 }

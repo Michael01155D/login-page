@@ -1,7 +1,7 @@
 const token = require("jsonwebtoken");
 require('dotenv').config();
 
-//to use when user action requires logged in
+//CURRENTLY UNSUSED. to use when user action requires logged in
 const handleAuth = (req, res, next) => {
     const SECRET = process.env.SECRET;
     const { authorization } = req.headers;

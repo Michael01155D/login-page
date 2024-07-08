@@ -29,7 +29,7 @@ const RegisterPage = ({ notification, setNotification, isError, setIsError, setU
                 setTimeout(() => {
                     setNotification("");
                     setIsError(false);
-                  }, 3000);
+                  }, 5000);
         }
     }
 
