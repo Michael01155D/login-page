@@ -1,19 +1,21 @@
+import { useState } from 'react';
 import '../styles/homePage.css';
-
+import UserDetails from './UserDetails';
 
 const HomePage = ({ user, setUser }) => {
-
+    const [displayUserDetails, setDisplayUserDetails] = useState(false);
+    
     const handleLogout = () => {
         localStorage.removeItem("user");
         setUser(null);
     }
     return(
         <>
-        Logged in successfully as {user.username}
-        <button className="logout"onClick={() => handleLogout()}>Log Out</button>
-        <div class="todo">
-           <p>Todo: add a button that sends an API request in order to verify the user's token is valid</p>
+        <div className="todo">
+            {displayUserDetails ? <UserDetails userId={user._id}/> : <></>}
+           <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>{displayUserDetails ? "Hide user details" : "Show user details"}</button>
         </div>
+        <button className="logout"onClick={() => handleLogout()}>Log Out</button>
         </>
     )
 }

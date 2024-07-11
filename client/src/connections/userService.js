@@ -12,3 +12,10 @@ export const register = async (username, password) => {
         //console.log("in register, res is: ", response)
         return response;
 }
+
+export const getUserDetails = async (userId) => {
+    const res = await fetch(`${URL}/${userId}`, {
+        method: "GET"
+    })
+    return res.json();
+}

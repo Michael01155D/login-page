@@ -2,6 +2,6 @@ Personal project to create a reusable login/logout page using MERN stack to lear
 
 Current TODO:
 
-Add a blog/note posting feature that requires the user to be logged in, and allow users to see their own notes. 
+Add a backend route that requires the user to be logged in to implement token verification.
 
 

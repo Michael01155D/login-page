@@ -1,5 +1,5 @@
 import UserForm from "./UserForm";
-import { register } from "../connections/registrationService";
+import { register } from "../connections/userService";
 import { useNavigate } from "react-router-dom";
 import NotificationMessage from "./NotificationMessage";
 import { login } from "../connections/loginService";

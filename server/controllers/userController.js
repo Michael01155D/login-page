@@ -2,7 +2,7 @@ const User = require("../models/User");
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
+const handleAuth = require('../middlewares/handleAuth');
 
 router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
@@ -25,7 +25,12 @@ router.get("/", async (req, res) => {
     res.json(users)
 })
 
+router.use("/:id", (req, res, next) => {
+    handleAuth(req, res, next);
+})
+
 router.get("/:id", async(req, res) => {
+    
     try{
         const user = await User.findById(req.params.id);
         res.json(user)
