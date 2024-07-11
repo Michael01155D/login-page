@@ -5,3 +5,14 @@
     margin: auto;
     margin-top: 20%;
 }
+
+.userDetailToggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userDetailToggle > button {
+    width: fit-content;
+    margin-bottom: 50px;
+}

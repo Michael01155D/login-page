@@ -11,9 +11,9 @@ const HomePage = ({ user, setUser }) => {
     }
     return(
         <>
-        <div className="todo">
-            {displayUserDetails ? <UserDetails userId={user._id}/> : <></>}
+        <div className="userDetailToggle">
            <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>{displayUserDetails ? "Hide user details" : "Show user details"}</button>
+           {displayUserDetails ? <UserDetails userId={user._id}/> : <></>}
         </div>
         <button className="logout"onClick={() => handleLogout()}>Log Out</button>
         </>
