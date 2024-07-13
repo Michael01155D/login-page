@@ -26,12 +26,11 @@ router.get("/", async (req, res) => {
 })
 
 router.use("/:id", (req, res, next) => {
-    console.log("before calling middleware, req is:", req.body)
     handleAuth(req, res, next);
 })
 
 router.get("/:id", async(req, res) => {
-    
+
     try{
         const user = await User.findById(req.params.id);
         res.json(user)
@@ -41,7 +40,6 @@ router.get("/:id", async(req, res) => {
 })
 
 router.get("/validateUser", (req, res, next) => {
-    console.log("body is: ", req.body)
     handleAuth(req, res, next);
 })
 

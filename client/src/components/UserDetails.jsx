@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { getUserDetails } from "../connections/userService";
 import '../styles/userDetails.css';
 
-const UserDetails = ({userId}) => {
+const UserDetails = ({ userId, token }) => {
     const [userInfo, setUserInfo] = useState(null);
     const [displayError, setDisplayError] = useState(false);
     useEffect(() => {
-        getUserDetails(userId).then( res => {
-            if (res.error) {
+        
+        getUserDetails(userId, token).then( res => {
+
+            if (!res.username) {
+                const error = res.message ? res.message : "An unknown Error occured";
                 setDisplayError(true);
-                setUserInfo("Error: " + res.error);
+                setUserInfo("Error: " + error);
             } else {
                 setDisplayError(false);
                 setUserInfo(res);
@@ -17,9 +20,15 @@ const UserDetails = ({userId}) => {
         })
     }, [])
     return (
-        <div className={displayError ? "userDisplayError" : "userDisplay"}>
-            { userInfo ? userInfo : "...loading"}
-        </div>
+        <>
+        {userInfo ? 
+            <div className={displayError ? "userDisplayError" : "userDisplay"}>
+                { userInfo.username ? userInfo.username : userInfo }
+            </div>
+            : <></>
+        }
+        </>
+
     )
 }
 

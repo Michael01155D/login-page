@@ -2,18 +2,18 @@ import { useState } from "react";
 import NotificationMessage from './NotificationMessage';
 import UserForm from './UserForm';
 import '../styles/loginPage.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../connections/loginService";
 
-const LoginPage = ({ setUser, notification, setNotification, isError, setIsError}) => {
-   
+const LoginPage = ({setUser, notification, setNotification, isError, setIsError}) => {
+    const navigate = useNavigate();
     const sendLoginRequest = async (username, password) => {
         try {
           const response = await login(username, password);
           if (response.authToken) {
-            setUser(response.user);
+            setUser(response);
             localStorage.setItem('user', JSON.stringify(response));
-            console.log("server response is: ", response)
+            navigate("/");
           } else {
             setNotification(response.error);
             setIsError(true);

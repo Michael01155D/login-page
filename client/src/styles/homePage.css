@@ -6,13 +6,15 @@
     margin-top: 20%;
 }
 
-.userDetailToggle {
+.serverCallToggles {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.userDetailToggle > button {
+.serverCallToggles > button {
     width: fit-content;
     margin-bottom: 50px;
+    background-color: rgb(42, 93, 110);
+    color:  white;
 }
