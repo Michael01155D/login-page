@@ -39,11 +39,8 @@ router.get("/:id", async(req, res) => {
     }
 })
 
-router.get("/validateUser", (req, res, next) => {
+router.delete("/:id", async(req, res, next) => {
     handleAuth(req, res, next);
-})
-
-router.delete("/:id", async(req, res) => {
     await User.findByIdAndDelete(req.params.id);    
 })
 module.exports = router;
