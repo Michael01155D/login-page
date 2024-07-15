@@ -4,13 +4,15 @@ import '../styles/loginPage.css';
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../connections/loginService";
 
-const LoginPage = ({setUser, notification, setNotification, isError, setIsError}) => {
+const LoginPage = ({setUser, setToken, notification, setNotification, isError, setIsError}) => {
     const navigate = useNavigate();
     const sendLoginRequest = async (username, password) => {
         try {
           const response = await login(username, password);
+          console.log('before doing anything else, after sending login request response is: ', response);
           if (response.authToken) {
             setUser(response.user);
+            setToken(response.authToken);
             localStorage.setItem('user', JSON.stringify(response));
             navigate("/");
           } else {

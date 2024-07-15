@@ -20,7 +20,16 @@ function App() {
       <AuthContext.Provider value={ { user, token } }>
         <Routes>
           <Route path="/" element={< HomePage setUser={setUser}/>}/>
-          <Route path="/login" element={<LoginPage setUser={setUser} notification={notification} setNotification={setNotification} setIsError={setIsError} isError={isError}/>}/>
+          <Route path="/login" element={
+            <LoginPage 
+              setUser={setUser} 
+              notification={notification} 
+              setNotification={setNotification} 
+              setIsError={setIsError} 
+              isError={isError}
+              setToken={setToken}
+            />}
+          />
           <Route path="/register" element={<RegisterPage setUser={setUser} notification={notification} setNotification={setNotification} setIsError={setIsError} isError={isError}/>} />
         </Routes>
       </AuthContext.Provider>

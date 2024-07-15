@@ -19,15 +19,16 @@ const HomePage = ({ setUser }) => {
     }, [user])
 
     useEffect(() => {
+        console.log("on homepage mount, token is, ", token)
         setUserInfo(user);
         setTokenInfo(token);
     }, [user, token])
 
     const handleLogout = () => {
         localStorage.removeItem("user");
-        setUser(null);
-        setUserInfo(null);
-        setTokenInfo(null);
+        setUser("");
+        setUserInfo("");
+        setTokenInfo("");
     }
 
     return(
@@ -42,7 +43,7 @@ const HomePage = ({ setUser }) => {
                 <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>
                     {displayUserDetails ? "Hide username" : "Get username from server!"}
                 </button>
-                {displayUserDetails ? <UserDetails token={tokenInfo} userId={userInfo._id}/>  : <></>}
+                {displayUserDetails && userInfo ? <UserDetails token={tokenInfo} userId={userInfo._id}/>  : <></>}
             </div>
             <div className="invalidServerCallContainer">
                 <section className='serverCallDescription'>
@@ -54,7 +55,7 @@ const HomePage = ({ setUser }) => {
                 <button onClick={() => setDisplayServerError(!displayServerError)}>
                     {displayServerError ? "Hide Server Error" : "Try to get username from server without valid access!"}
                 </button>
-                {displayServerError ? <UserDetails token={token + "a"} userId={user._id}/> :<></>}
+                {displayServerError && userInfo ? <UserDetails token={token + "a"} userId={userInfo._id}/> :<></>}
             </div>
         </div>
         <button className="logout"onClick={() => handleLogout()}>Log Out</button>

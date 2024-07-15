@@ -3,12 +3,11 @@ import { getUserDetails } from "../connections/userService";
 import '../styles/userDetails.css';
 
 const UserDetails = ({ userId, token }) => {
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState(localStorage.getItem("user"));
     const [displayError, setDisplayError] = useState(false);
     useEffect(() => {
         
         getUserDetails(userId, token).then( res => {
-
             if (!res.username) {
                 const error = res.message ? res.message : "An unknown Error occured";
                 setDisplayError(true);
@@ -21,11 +20,17 @@ const UserDetails = ({ userId, token }) => {
     }, [])
     return (
         <>
-        {userInfo ? 
-            <div className={displayError ? "userDisplayError" : "userDisplay"}>
-                { userInfo.username ? userInfo.username : userInfo }
+        {userInfo && !displayError ? 
+            <div className="userDisplay">
+                { userInfo.username ? userInfo.username : "" }
             </div>
             : <></>
+        }
+        {userInfo && displayError ? 
+        <div className="userDisplayError">
+            {userInfo}
+        </div>
+        : <></>
         }
         </>
 
