@@ -13,19 +13,19 @@ const UserForm = ({requestHandler, formAction}) => {
     return (
         <form className="userForm" onSubmit={handleRequest}>
             <h2>{formAction}</h2>
-            <section id="username-section">
-                <label htmlFor="username-form">Username (min 2 characters)</label>
-                <input placeholder='username' maxLength={20} id='username-form' type='text' value={username} name="Username" 
+            <section id="usernameSection">
+                <label htmlFor="usernameForm">Username (min 2 characters)</label>
+                <input placeholder='username' maxLength={20} id='usernameForm' type='text' value={username} name="Username" 
                 onChange={(newName) => setUsername(newName.target.value) }
                 />
             </section>
             <section>
-                <label htmlFor="password-form">Password</label>
-                <input placeholder="password" id='password-form' type='password' value={password} name="Password" 
+                <label htmlFor="passwordForm">Password</label>
+                <input placeholder="password" id='passwordForm' type='password' value={password} name="Password" 
                 onChange={(newPw) => setPassword(newPw.target.value) }
                 />
             </section>
-            <button type="submit">{formAction}</button>
+            <button id="formSubmitButton" type="submit">{formAction}</button>
         </form>
     )
 }

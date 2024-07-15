@@ -16,6 +16,7 @@ function App() {
   const [isError, setIsError] = useState(false);
   return (
     <BrowserRouter>
+    <h1>User Authentication Demo</h1>
       <AuthContext.Provider value={ { user, token } }>
         <Routes>
           <Route path="/" element={< HomePage setUser={setUser}/>}/>

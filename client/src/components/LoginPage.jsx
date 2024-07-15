@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NotificationMessage from './NotificationMessage';
 import UserForm from './UserForm';
 import '../styles/loginPage.css';
@@ -24,6 +23,12 @@ const LoginPage = ({setUser, notification, setNotification, isError, setIsError}
           }
         } catch (error) {
           console.error(error.message);
+          setNotification("Server Error, please try again later");
+          setIsError(true);
+          setTimeout(() => {
+            setNotification("");
+            setIsError(false);
+          }, 5000);
         }
       }
     
