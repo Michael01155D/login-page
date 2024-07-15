@@ -19,7 +19,6 @@ const HomePage = ({ setUser }) => {
     }, [user])
 
     useEffect(() => {
-        console.log("on homepage mount, token is, ", token)
         setUserInfo(user);
         setTokenInfo(token);
     }, [user, token])

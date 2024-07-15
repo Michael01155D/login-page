@@ -3,10 +3,20 @@ import { register } from "../connections/userService";
 import { useNavigate, Link } from "react-router-dom";
 import NotificationMessage from "./NotificationMessage";
 import { login } from "../connections/loginService";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const RegisterPage = ({ notification, setNotification, isError, setIsError, setUser }) => {
 
     const navigate = useNavigate();
+
+    const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (user._id) {
+            navigate("/");
+        }
+    }, [user])
 
     const sendRegisterRequest = async (username, password) => {
         const newUser = await register(username, password);
@@ -17,19 +27,19 @@ const RegisterPage = ({ notification, setNotification, isError, setIsError, setU
             navigate("/");
         } else {
             if (newUser.code == 11000) {
-                setNotification("The username is already taken.")
+                setNotification("The username is already taken.");
             }
             if (newUser.message && newUser.message.includes("Path `username`")){
-                setNotification("Username must be between 2 and 20 characters")
+                setNotification("Username must be between 2 and 20 characters");
             }
             if (newUser.invalidPasswordError){
                 setNotification(newUser.invalidPasswordError);
             }
             setIsError(true);
-                setTimeout(() => {
-                    setNotification("");
-                    setIsError(false);
-                  }, 5000);
+            setTimeout(() => {
+                setNotification("");
+                setIsError(false);
+            }, 5000);
         }
     }
 

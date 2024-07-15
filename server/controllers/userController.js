@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const password = req.body.password;
     if (!password || password.trim().length < 8) {
-        return res.status(400).send({invalidPasswordError: "Password must be at least 8 characters"})
+        return res.status(400).send({invalidPasswordError: "Password must be at least 8 characters"});
     }
     const hash = await bcrypt.hash(password, salt);
     const newUser = new User({username: req.body.username, passwordHash: hash});
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
         const savedUser = await newUser.save();
         res.json(savedUser);
     } catch(e) {
-        res.json(e)
+        res.json(e);
     }
 })
 
@@ -31,9 +31,9 @@ router.use("/:id", (req, res, next) => {
 
 router.get("/:id", async(req, res) => {
 
-    try{
+    try {
         const user = await User.findById(req.params.id);
-        res.json(user)
+        res.json(user);
     } catch(e) {
         res.json(e);
     }
@@ -43,4 +43,5 @@ router.delete("/:id", async(req, res, next) => {
     handleAuth(req, res, next);
     await User.findByIdAndDelete(req.params.id);    
 })
+
 module.exports = router;

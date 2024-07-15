@@ -21,13 +21,5 @@ export const getUserDetails = async (userId, token) => {
         }
     })
     const response = res.json();
-    console.log("in getUserdeets res is " , response)
     return response;
-}
-
-export const verifyToken = async () => {
-    const res = await fetch(`${URL}/validateUser`, {
-        method: "GET"
-    })
-    return res.json();
 }
