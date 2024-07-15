@@ -20,15 +20,30 @@ const HomePage = ({ setUser }) => {
     }
     return(
         <>
-        <div className="serverCallToggles">
-           <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>
-                {displayUserDetails ? "Hide username" : "Get username from the server!"}
-            </button>
-           {displayUserDetails ? <UserDetails token={token} userId={user._id}/>  : <></>}
-           <button onClick={() => setDisplayServerError(!displayServerError)}>
-                {displayServerError ? "Hide Server Error" : "Try to get user data from the server without valid access!"}
-            </button>
-            {displayServerError ? <UserDetails token={token + "a"} userId={user._id}/> :<></>}
+        <div className="serverCallContainer">
+            <div className="validServerCallContainer">
+                <section className='serverCallDescription'>
+                    The left button will make a request to the server for the username. The request will include a valid JSON webtoken associated with 
+                    the current user. The server will validate the token before responding with the requested data, which will be displayed 
+                    beneath the button.
+                </section>
+                <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>
+                    {displayUserDetails ? "Hide username" : "Get username from server!"}
+                </button>
+                {displayUserDetails ? <UserDetails token={token} userId={user._id}/>  : <></>}
+            </div>
+            <div className="invalidServerCallContainer">
+                <section className='serverCallDescription'>
+                    The right button will make a request to the server for the username. 
+                    The request will NOT include a valid JSON webtoken.
+                    Therefore, the server will respond with an error, which will be displayed
+                    beneath the button.
+                </section>
+                <button onClick={() => setDisplayServerError(!displayServerError)}>
+                    {displayServerError ? "Hide Server Error" : "Try to get username from server without valid access!"}
+                </button>
+                {displayServerError ? <UserDetails token={token + "a"} userId={user._id}/> :<></>}
+            </div>
         </div>
         <button className="logout"onClick={() => handleLogout()}>Log Out</button>
         </>

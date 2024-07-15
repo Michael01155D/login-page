@@ -3,18 +3,34 @@
     background-color: rgb(42, 93, 110);
     color: white;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
-.serverCallToggles {
+.serverCallContainer {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    height: 70vh;
+    margin: auto;
 }
 
-.serverCallToggles > button {
-    width: fit-content;
-    margin-bottom: 50px;
+.serverCallContainer > div > button {
+    margin: 50px;
     background-color: rgb(42, 93, 110);
     color:  white;
+}
+
+.serverCallContainer > div {
+    flex: 1 1 0;
+    height: 100%;
+    border: 2px solid black;
+}
+
+section {
+    font-size: medium;
+}
+
+.serverCallDescription {
+    white-space: pre-line;
 }

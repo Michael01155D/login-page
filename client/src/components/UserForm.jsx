@@ -14,8 +14,8 @@ const UserForm = ({requestHandler, formAction}) => {
         <form className="userForm" onSubmit={handleRequest}>
             <h2>{formAction}</h2>
             <section id="username-section">
-                <label htmlFor="username-form">Username</label>
-                <input placeholder='username' id='username-form' type='text' value={username} name="Username" 
+                <label htmlFor="username-form">Username (min 2 characters)</label>
+                <input placeholder='username' maxLength={20} id='username-form' type='text' value={username} name="Username" 
                 onChange={(newName) => setUsername(newName.target.value) }
                 />
             </section>
