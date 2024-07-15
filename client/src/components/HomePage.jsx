@@ -9,15 +9,27 @@ const HomePage = ({ setUser }) => {
     const [displayServerError, setDisplayServerError] = useState(false);
     const navigate = useNavigate();
     const { user, token } = useContext(AuthContext);
+    const [userInfo, setUserInfo] = useState(user);
+    const [tokenInfo, setTokenInfo] = useState(token);
+
     useEffect(() => {
         if (!user) {
             navigate("/login");
         }
     }, [user])
+
+    useEffect(() => {
+        setUserInfo(user);
+        setTokenInfo(token);
+    }, [user, token])
+
     const handleLogout = () => {
         localStorage.removeItem("user");
         setUser(null);
+        setUserInfo(null);
+        setTokenInfo(null);
     }
+
     return(
         <>
         <div className="serverCallContainer">
@@ -30,7 +42,7 @@ const HomePage = ({ setUser }) => {
                 <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>
                     {displayUserDetails ? "Hide username" : "Get username from server!"}
                 </button>
-                {displayUserDetails ? <UserDetails token={token} userId={user._id}/>  : <></>}
+                {displayUserDetails ? <UserDetails token={tokenInfo} userId={userInfo._id}/>  : <></>}
             </div>
             <div className="invalidServerCallContainer">
                 <section className='serverCallDescription'>

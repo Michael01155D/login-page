@@ -11,7 +11,7 @@ const LoginPage = ({setUser, notification, setNotification, isError, setIsError}
         try {
           const response = await login(username, password);
           if (response.authToken) {
-            setUser(response);
+            setUser(response.user);
             localStorage.setItem('user', JSON.stringify(response));
             navigate("/");
           } else {

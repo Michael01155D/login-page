@@ -1,6 +1,6 @@
 import UserForm from "./UserForm";
 import { register } from "../connections/userService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import NotificationMessage from "./NotificationMessage";
 import { login } from "../connections/loginService";
 
@@ -35,8 +35,10 @@ const RegisterPage = ({ notification, setNotification, isError, setIsError, setU
 
     return(
         <>
+        <h2>Create a New User Account</h2>
         {notification ? <NotificationMessage notification={notification} isError={isError}/>: <></>}
         <UserForm requestHandler={sendRegisterRequest} formAction="Register"/>
+        <Link to="/login"> Return to Login Page</Link>
         </>
     )
 }
