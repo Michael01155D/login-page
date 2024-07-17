@@ -42,7 +42,7 @@ const HomePage = ({ setUser }) => {
                 <button onClick={() => setDisplayUserDetails(!displayUserDetails)}>
                     {displayUserDetails ? "Hide username" : "Get username from server!"}
                 </button>
-                {displayUserDetails && userInfo ? <UserDetails token={tokenInfo} userId={userInfo._id}/>  : <></>}
+                {displayUserDetails ? <UserDetails token={tokenInfo} userId={userInfo._id}/>  : <></>}
             </div>
             <div className="invalidServerCallContainer">
                 <section className='serverCallDescription'>
@@ -54,7 +54,7 @@ const HomePage = ({ setUser }) => {
                 <button onClick={() => setDisplayServerError(!displayServerError)}>
                     {displayServerError ? "Hide Server Error" : "Try to get username from server without valid access!"}
                 </button>
-                {displayServerError && userInfo ? <UserDetails token={token + "a"} userId={userInfo._id}/> :<></>}
+                {displayServerError ? <UserDetails token={token + "a"} userId={user._id}/> :<></>}
             </div>
         </div>
         <button className="logout"onClick={() => handleLogout()}>Log Out</button>
